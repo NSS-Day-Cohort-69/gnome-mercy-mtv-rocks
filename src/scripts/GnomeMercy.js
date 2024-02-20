@@ -4,9 +4,39 @@
     Gnome Mercy by using all other HTML generation
     components.
 */
+import { RequestForm } from "./RequestForm.js";
+import { craftRequests } from "./CraftRequests.js"
+import { IngredientOptions } from "./Ingredients.js";
+import { Crafters } from "./Crafters.js"
 
-export const GnomeMercy = () => {
+export const GnomeMercy = async () => {
+
+const requestFormHtml = await RequestForm()
+const ingredientsHTML = await IngredientOptions()
+const craftRequestHTML = await craftRequests()
+const craftersHTML = await Crafters()
+
   return `
     <h1>Gnome Mercy</h1>
+
+    <article id="RequestForm">
+    ${requestFormHtml}
+    </article>
+    
+    <article id="CompleteRequests">
+
+    <section id="craftRequests">
+    ${craftRequestHTML}
+    </section>
+
+    <section id="crafters">
+    ${craftersHTML}
+    </section>
+
+    <section id="Ingredients">
+    ${ingredientsHTML}
+    </section>
+
+    </article>
     `;
 };
