@@ -34,6 +34,7 @@ const craftersHTML = await Crafters()
     </section>
 
     <section id="Ingredients">
+    <h1>Ingredients</h1>
     ${ingredientsHTML}
     </section>
 

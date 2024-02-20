@@ -23,7 +23,7 @@ const render = async () => {
         of state to HTML
     */
 };
-
+document.addEventListener("newCraftRequestCreated", render)
 render();
 
 // Listen for state changes and invoke render() when it does
