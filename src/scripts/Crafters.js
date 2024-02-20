@@ -1,8 +1,15 @@
+import { setCrafterId } from "./TransientState.js"
 /*
   Responsibility
     Generate HTML for the dropdown of crafters. When one is
     selected, update transient state.
 */
+
+const handleCrafterChoiceChange = (changeEvent) => {
+  if(changeEvent.target.id === "crafter") {
+    setCrafterId(changeEvent.target.value)
+  }
+}
 
 const getCrafters = async () => {
   const response = await fetch("http://localhost:8000/crafters")
@@ -12,6 +19,8 @@ const getCrafters = async () => {
 }
 
 export const Crafters = async () => {
+  
+  document.addEventListener("change", handleCrafterChoiceChange)
   
   const crafters = await getCrafters();
 
@@ -30,4 +39,3 @@ export const Crafters = async () => {
   return htmlStr
 };
 
-// option value= "" selected disabled hidden
