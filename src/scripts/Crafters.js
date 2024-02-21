@@ -7,7 +7,7 @@ import { setCrafterId } from "./TransientState.js"
 
 const handleCrafterChoiceChange = (changeEvent) => {
   if(changeEvent.target.id === "crafter") {
-    setCrafterId(changeEvent.target.value)
+    setCrafterId(parseInt(changeEvent.target.value))
   }
 }
 

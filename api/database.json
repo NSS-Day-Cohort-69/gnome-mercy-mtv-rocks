@@ -90,52 +90,52 @@
   ],
   "craftRequests": [
     {
+      "id": 1,
       "name": "Broken Brains Brew",
       "intendedUse": "Causes confusion.",
-      "craftTypeId": 1,
-      "id": 1
+      "craftTypeId": 1
     },
     {
+      "id": 2,
       "name": "Flask of Fetches",
       "intendedUse": "Brings the user what she asks for.",
-      "craftTypeId": 1,
-      "id": 2
+      "craftTypeId": 1
     },
     {
+      "id": 3,
       "name": "Then Success Elixir",
       "intendedUse": "Alleviates broken promises.",
-      "craftTypeId": 2,
-      "id": 3
+      "craftTypeId": 2
     },
     {
+      "id": 4,
       "name": "Love Potion",
       "intendedUse": "For loooove",
-      "craftTypeId": 1,
-      "id": 4
+      "craftTypeId": 1
     },
     {
+      "id": 5,
       "name": "Beautification",
       "intendedUse": "To make everyone around me pretty",
-      "craftTypeId": 2,
-      "id": 5
+      "craftTypeId": 2
     },
     {
+      "id": 6,
       "name": "Ugly Potion",
       "intendedUse": "Causes the ugly",
-      "craftTypeId": 1,
-      "id": 6
+      "craftTypeId": 1
     },
     {
+      "id": 7,
       "name": "Elixir of Life",
       "intendedUse": "My grandma needs a few extra years",
-      "craftTypeId": 2,
-      "id": 7
+      "craftTypeId": 2
     },
     {
+      "id": 8,
       "name": "Lovesick Elixir of Love",
       "intendedUse": "Enable someone to hate another person",
-      "craftTypeId": 2,
-      "id": 8
+      "craftTypeId": 2
     }
   ],
   "completions": [
