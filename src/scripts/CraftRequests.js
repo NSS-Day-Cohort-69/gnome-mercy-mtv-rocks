@@ -10,7 +10,7 @@ import { setCraftRequestId } from "./TransientState.js"
 
 const handleRequestChange = (changeEvent) => {
   if(changeEvent.target.id === "craftRequest") {
-    setCraftRequestId(changeEvent.target.value)
+    setCraftRequestId(parseInt(changeEvent.target.value))
   }
 }
 

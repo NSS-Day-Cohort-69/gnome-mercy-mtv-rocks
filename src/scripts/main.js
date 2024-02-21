@@ -24,6 +24,21 @@ const render = async () => {
     */
 };
 document.addEventListener("newCraftRequestCreated", render)
+document.addEventListener("craftRequestCompleted", render)
 render();
 
 // Listen for state changes and invoke render() when it does
+
+
+
+
+// Delete CraftRequest from drop-down once order is finished
+
+// CSS Ingredients
+
+/* Store selected ingredients as craftIngredients = {
+    ingredientId: int
+    completionId: int
+    id: int pk
+    }
+*/

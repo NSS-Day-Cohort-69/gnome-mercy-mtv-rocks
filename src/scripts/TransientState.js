@@ -5,7 +5,7 @@
         state with fetch() call to the API.
 */
 
-const API = "https://uqyoy.sse.codesandbox.io/api";
+const API = "http://localhost:8000";
 
 const applicationState = {
   craftTypes: [],
@@ -17,12 +17,72 @@ const applicationState = {
     },
   crafters: [],
   ingredients: [],
-  userChoices: {
-    crafterId: 0,
-    chosenIngredients: new Set(),
-    requestId: 0
-  }
+  userChoices:
+    {
+      crafterId: 0, // Post to API, get back in Completion object
+      chosenIngredients: new Set(), // Access after we have access to latest completion object
+      requestId: 0 //// Post to API, get back in Completion object
+    }
 };
+
+export const finishedOrder = async () => {
+  if (applicationState.userChoices.crafterId && applicationState.userChoices.requestId) {
+    const payload = {
+      crafterId: applicationState.userChoices.crafterId,
+      craftRequestId: applicationState.userChoices.requestId
+    }
+    
+    const postOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    }
+
+    /*const deleteOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify() //what are we stringing?
+    } */ // Delete selected request
+
+    if(payload.crafterId != 0 && payload.requestId != 0) {
+      const post = await fetch("http://localhost:8000/completions", postOptions)
+      const postCompletions = post.json()
+    }
+    removeRequest()
+    
+    const renderEvent = new CustomEvent("craftRequestCompleted")
+    document.dispatchEvent(renderEvent)
+
+    setCraftRequestId(0)
+    setCrafterId(0)
+  }
+}
+
+export const removeRequest = async () => {
+  const response1 = await fetch("http://localhost:8000/completions")
+  const completions = await response1.json()
+
+  const response2 = await fetch("http://localhost:8000/craftRequests")
+  let craftRequests = await response2.json()
+
+  for (const completion of completions) {
+    for (const craftRequest of craftRequests) {
+      if (completion.craftRequestId === craftRequest.id) {
+        await fetch("http://localhost:8000/craftRequests", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(craftRequest)
+         })
+      }
+    }
+  }
+}
 
 /* 
   Once a new craft completion has been saved in the API,
@@ -38,9 +98,7 @@ export const createRequest = async () => {
   }
 
   if(applicationState.craftRequests.name != "" && applicationState.craftRequests.intendedUse != "" && applicationState.craftRequests.craftTypeId > 0) {
-
     const response = await fetch("http://localhost:8000/craftRequests", postOptions)
-    
   }
 
   
@@ -54,6 +112,7 @@ export const createRequest = async () => {
 
 console.log(applicationState)
 }
+
 
 const createCraftIngredients = (completion) => {
   const fetchArray = [];
@@ -79,6 +138,7 @@ const createCraftIngredients = (completion) => {
     }
   );
 
+
   // This is where all the fetches (Promises) all run and resolve
   Promise.all(fetchArray).then(() => {
     console.log("All fetches complete");
@@ -86,12 +146,7 @@ const createCraftIngredients = (completion) => {
   });
 };
 
-
-
-
-
 // these are all the functions to set our transient state
-
 
 export const setIngredients = (id) => {
   // Step 1: Use the has() method to determine if the Set has the ingredient
@@ -104,30 +159,24 @@ export const setIngredients = (id) => {
   else {
     mySet.add(id)
   }
-  console.log(applicationState)
 };
 
 export const setName = (inputValue) => {
   applicationState.craftRequests.name = inputValue
-  console.log(applicationState)
 }
 
 export const setPurpose = (inputValue) => {
   applicationState.craftRequests.intendedUse = inputValue
-  console.log(applicationState)
 }
 
 export const setCraftType = (userChoice) => {
   applicationState.craftRequests.craftTypeId = userChoice
-  console.log(applicationState)
 }
 
 export const setCraftRequestId = (userChoice) => {
   applicationState.userChoices.requestId = userChoice
-  console.log(applicationState)
 }
 
 export const setCrafterId = (userChoice) => {
   applicationState.userChoices.crafterId = userChoice
-  console.log(applicationState)
 }
