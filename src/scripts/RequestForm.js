@@ -57,6 +57,7 @@ export const RequestForm = async () => {
      <label class="label" for="purpose">Purpose</label>
      <input type="text" id="purpose" class="input">
 
+    <label class="label" for="types">Types</label>
     <select id="craftType">
     <option value =''disabled selected hidden>Select a Type</option>
     ${craftTypeHTML}

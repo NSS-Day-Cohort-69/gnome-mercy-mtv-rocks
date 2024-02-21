@@ -136,6 +136,12 @@
       "name": "Lovesick Elixir of Love",
       "intendedUse": "Enable someone to hate another person",
       "craftTypeId": 2
+    },
+    {
+      "name": "Zach Juice",
+      "intendedUse": "To juice Zach up",
+      "craftTypeId": 1,
+      "id": 9
     }
   ],
   "completions": [
@@ -173,6 +179,11 @@
       "crafterId": 2,
       "craftRequestId": 1,
       "id": 7
+    },
+    {
+      "crafterId": 1,
+      "craftRequestId": 9,
+      "id": 8
     }
   ],
   "craftIngredients": [

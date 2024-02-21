@@ -5,9 +5,9 @@ import { finishedOrder } from "./TransientState.js"
     Generate the HTML for the complete requests button,
     and POST a new item to the API when clicked.
 */
-const handleFinishedOrder = (clickEvent) => {
+const handleFinishedOrder = async (clickEvent) => {
   if(clickEvent.target.id === "finishOrder") {
-    finishedOrder()
+    await finishedOrder()
   }
 }
 

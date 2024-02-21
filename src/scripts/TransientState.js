@@ -52,35 +52,12 @@ export const finishedOrder = async () => {
       const post = await fetch("http://localhost:8000/completions", postOptions)
       const postCompletions = post.json()
     }
-    removeRequest()
     
     const renderEvent = new CustomEvent("craftRequestCompleted")
     document.dispatchEvent(renderEvent)
 
     setCraftRequestId(0)
     setCrafterId(0)
-  }
-}
-
-export const removeRequest = async () => {
-  const response1 = await fetch("http://localhost:8000/completions")
-  const completions = await response1.json()
-
-  const response2 = await fetch("http://localhost:8000/craftRequests")
-  let craftRequests = await response2.json()
-
-  for (const completion of completions) {
-    for (const craftRequest of craftRequests) {
-      if (completion.craftRequestId === craftRequest.id) {
-        await fetch("http://localhost:8000/craftRequests", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(craftRequest)
-         })
-      }
-    }
   }
 }
 
