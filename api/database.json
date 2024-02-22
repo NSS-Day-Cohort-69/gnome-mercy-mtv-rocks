@@ -142,6 +142,18 @@
       "intendedUse": "To juice Zach up",
       "craftTypeId": 1,
       "id": 9
+    },
+    {
+      "name": "Testing",
+      "intendedUse": "To test craft ingredients",
+      "craftTypeId": 1,
+      "id": 10
+    },
+    {
+      "name": "Goop",
+      "intendedUse": "To goop",
+      "craftTypeId": 1,
+      "id": 11
     }
   ],
   "completions": [
@@ -184,6 +196,16 @@
       "crafterId": 1,
       "craftRequestId": 9,
       "id": 8
+    },
+    {
+      "crafterId": 1,
+      "craftRequestId": 11,
+      "id": 9
+    },
+    {
+      "crafterId": 1,
+      "craftRequestId": 10,
+      "id": 10
     }
   ],
   "craftIngredients": [
@@ -306,6 +328,16 @@
       "ingredientId": 4,
       "completionId": 7,
       "id": 24
+    },
+    {
+      "ingredientId": 1,
+      "completionId": 10,
+      "id": 25
+    },
+    {
+      "ingredientId": 2,
+      "completionId": 10,
+      "id": 26
     }
   ]
 }

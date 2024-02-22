@@ -1,13 +1,5 @@
 import { setCraftRequestId } from "./TransientState.js"
 
-/*
-  Responsibility
-    Generate HTML for the dropdown of craftRequests.
-
-    Criteria:
-      * Only incomplete requests should be converted to options
-*/
-
 const handleRequestChange = (changeEvent) => {
   if(changeEvent.target.id === "craftRequest") {
     setCraftRequestId(parseInt(changeEvent.target.value))
@@ -21,10 +13,6 @@ export const craftRequests = async () => {
   const completions = await response2.json()
 
   document.addEventListener("change", handleRequestChange)
-
-  
-
-
 
   let craftRequestHTML = `<div>
   <h3>Craft Requests</h3>
@@ -52,17 +40,6 @@ export const craftRequests = async () => {
     }
   )
 
-  /*const craftString = requests.map((request) => {
-    for (const completion of completions) {
-      if (request.id = completion.craftRequestId) {
-        validRequests.push(request)
-        for (const request of validRequests) {
-        return `<option value='${request.id}'>${request.name}</option>`
-        }  
-      }
-    }
-
-});*/
 craftRequestHTML += craftString.join("")
 craftRequestHTML += `</select>
 </div>`;

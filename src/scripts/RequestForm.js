@@ -1,12 +1,5 @@
 import { setCraftType, setName, setPurpose, createRequest } from "./TransientState.js";
 
-/*
-  Responsibility
-    Generate HTML for the request form. When Submit button
-    is clicked, POST a new request to the API.
-*/
-
-
 const handleNameChange = (inputEvent) => {
   if(inputEvent.target.id === "name") {
     setName(inputEvent.target.value)
@@ -68,7 +61,3 @@ export const RequestForm = async () => {
     `;
   return html;
 };
-
-// Do this first because it is first on page
-// Link to request types:  http://localhost:8000/craftTypes
-

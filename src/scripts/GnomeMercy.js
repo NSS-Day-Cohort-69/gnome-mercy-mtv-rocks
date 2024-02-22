@@ -1,9 +1,3 @@
-/*
-  Responsibility
-    Generate the entire HTML string template for 
-    Gnome Mercy by using all other HTML generation
-    components.
-*/
 import { RequestForm } from "./RequestForm.js";
 import { craftRequests } from "./CraftRequests.js"
 import { IngredientOptions } from "./Ingredients.js";
@@ -28,7 +22,7 @@ const completionHTML = await completedOrders()
     </article>
     
     <article id="CompleteRequests">
-
+    <div class="row">
     <section id="craftRequests">
     ${craftRequestHTML}
     </section>
@@ -36,11 +30,13 @@ const completionHTML = await completedOrders()
     <section id="crafters">
     ${craftersHTML}
     </section>
-
+    </div>
+    <div id="columns">
     <section id="Ingredients">
     <h1>Ingredients</h1>
     ${ingredientsHTML}
     </section>
+    </div>
 
     <section id="finish-order">
     ${finishBtn}
