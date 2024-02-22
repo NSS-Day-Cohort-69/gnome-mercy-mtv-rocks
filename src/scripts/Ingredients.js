@@ -18,7 +18,7 @@ export const IngredientOptions = async () => {
   let html = '<div id="ingredient">'
 
   for (const ingredient of ingredients) {
-    html +=`<input type="checkbox" name="ingredient" value='${ingredient.id}'/>${ingredient.name}`
+    html +=`<input type="checkbox" id="list-item" name="ingredient" value='${ingredient.id}'/>${ingredient.name}`
   }
   html+= '</div>'
   return html

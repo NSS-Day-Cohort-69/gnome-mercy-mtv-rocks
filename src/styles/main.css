@@ -25,7 +25,8 @@ h1,h2,h3,h4,h5,h6 {
 	flex-flow: row nowrap
 }
 .column {
-	flex-flow: column nowrap
+	display: flex;
+	flex-flow: column nowrap;
 }
 .section {
 	margin-left: auto;
@@ -49,4 +50,27 @@ button {
 button {
 	margin-top: .5rem;
 	cursor: pointer;
+}
+
+#columns {
+	border: 1px solid black
+}
+
+#Ingredients {
+	display: flex;
+	width: 600px;
+	height: 300px;
+	margin-left: 600px;
+	margin-top: -225px
+}
+
+#ingredient {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#list-item {
+	width: 50%;
+	box-sizing: border-box;
+	padding: 5px;
 }

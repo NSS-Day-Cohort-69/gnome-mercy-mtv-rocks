@@ -28,7 +28,7 @@ const completionHTML = await completedOrders()
     </article>
     
     <article id="CompleteRequests">
-
+    <div class="row">
     <section id="craftRequests">
     ${craftRequestHTML}
     </section>
@@ -36,11 +36,13 @@ const completionHTML = await completedOrders()
     <section id="crafters">
     ${craftersHTML}
     </section>
-
-    <section id="Ingredients">
+    </div>
+    <div id="column">
+    <section  class="column" id="Ingredients">
     <h1>Ingredients</h1>
     ${ingredientsHTML}
     </section>
+    </div>
 
     <section id="finish-order">
     ${finishBtn}

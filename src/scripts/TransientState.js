@@ -27,30 +27,44 @@ const applicationState = {
 
 export const finishedOrder = async () => {
   if (applicationState.userChoices.crafterId && applicationState.userChoices.requestId) {
-    const payload = {
+    const payload1 = {
       crafterId: applicationState.userChoices.crafterId,
       craftRequestId: applicationState.userChoices.requestId
     }
-    
-    const postOptions = {
+
+    const postOptions1 = {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload1)
     }
 
-    /*const deleteOptions = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify() //what are we stringing?
-    } */ // Delete selected request
 
-    if(payload.crafterId != 0 && payload.requestId != 0) {
-      const post = await fetch("http://localhost:8000/completions", postOptions)
-      const postCompletions = post.json()
+    if(payload1.crafterId != 0 && payload1.requestId != 0) {
+      const post1 = await fetch("http://localhost:8000/completions", postOptions1)
+      const response = await fetch("http://localhost:8000/completions")
+      const completions = await response.json()
+      for (const ingredient of applicationState.userChoices.chosenIngredients) {
+        for (const completion of completions) {
+          if (completion.id === completions.length) {
+            const payload2 = {
+            ingredientId: ingredient,
+            completionId: completion.id
+          }
+
+          const postOptions2 = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload2)
+          }
+
+          const post2 = await fetch("http://localhost:8000/craftIngredients", postOptions2)
+          const craftIngredients = await post2.json()
+        }
+      }
     }
     
     const renderEvent = new CustomEvent("craftRequestCompleted")
@@ -59,7 +73,7 @@ export const finishedOrder = async () => {
     setCraftRequestId(0)
     setCrafterId(0)
   }
-}
+}}
 
 /* 
   Once a new craft completion has been saved in the API,
@@ -126,9 +140,6 @@ const createCraftIngredients = (completion) => {
 // these are all the functions to set our transient state
 
 export const setIngredients = (id) => {
-  // Step 1: Use the has() method to determine if the Set has the ingredient
-  // Step 2: If it does, remove it with delete() method
-  // Step 3: If it does not, add it with add() method
   let mySet = applicationState.userChoices.chosenIngredients
   if (mySet.has(id)) {
     mySet.delete(id)
