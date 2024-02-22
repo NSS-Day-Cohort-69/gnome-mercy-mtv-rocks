@@ -1,10 +1,3 @@
-/*
-    Responsbility:
-
-        Manage application state and provide functions to change permanent
-        state with fetch() call to the API.
-*/
-
 const API = "http://localhost:8000";
 
 const applicationState = {
@@ -75,10 +68,6 @@ export const finishedOrder = async () => {
   }
 }}
 
-/* 
-  Once a new craft completion has been saved in the API,
-  add all of the ingredients chosen by the user. 
-*/
 export const createRequest = async () => {
   const postOptions = {
     method: "POST",
@@ -92,8 +81,6 @@ export const createRequest = async () => {
     const response = await fetch("http://localhost:8000/craftRequests", postOptions)
   }
 
-  
-  
   const renderEvent = new CustomEvent("newCraftRequestCreated")
   document.dispatchEvent(renderEvent)
 
@@ -101,41 +88,7 @@ export const createRequest = async () => {
   setPurpose("")
   setCraftType(0)
 
-console.log(applicationState)
 }
-
-
-const createCraftIngredients = (completion) => {
-  const fetchArray = [];
-
-  applicationState.userChoices.chosenIngredients.forEach(
-    (chosenIngredientId) => {
-      fetchArray.push(
-        fetch(`${API}/craftIngredients`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            ingredientId: chosenIngredientId,
-            completionId: completion.id
-          })
-        })
-          .then((response) => response.json())
-          .then(() => {
-            console.log("Fetch call done");
-          })
-      );
-    }
-  );
-
-
-  // This is where all the fetches (Promises) all run and resolve
-  Promise.all(fetchArray).then(() => {
-    console.log("All fetches complete");
-    applicationState.userChoices.chosenIngredients.clear();
-  });
-};
 
 // these are all the functions to set our transient state
 

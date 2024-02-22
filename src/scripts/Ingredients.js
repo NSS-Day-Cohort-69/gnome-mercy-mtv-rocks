@@ -1,9 +1,5 @@
 import { setIngredients } from "./TransientState.js"
-/*
-  Responsibility
-    Generate HTML for checkboxes for each ingredient and
-    store each choice in transient state.
-*/
+
 const handleIngredientChoiceChange = (changeEvent) => {
   if(changeEvent.target.name === "ingredient") {
     setIngredients(parseInt(changeEvent.target.value))
